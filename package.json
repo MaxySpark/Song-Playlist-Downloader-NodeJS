@@ -1,0 +1,24 @@
+{
+  "name": "song-playlist-downloader",
+  "version": "1.0.0",
+  "description": "\"Song Playlist Downloader\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MaxySpark/song-playlist-downloader.git"
+  },
+  "author": "MaxySpark",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MaxySpark/song-playlist-downloader/issues"
+  },
+  "homepage": "https://github.com/MaxySpark/song-playlist-downloader#readme",
+  "dependencies": {
+    "cheerio": "^0.22.0",
+    "readline-sync": "^1.4.5",
+    "request": "^2.76.0"
+  }
+}
