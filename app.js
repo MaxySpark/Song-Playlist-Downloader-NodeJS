@@ -1,18 +1,36 @@
-var ProgressBar = require('progress');
-var request = require('request');
-var cheerio = require('cheerio');
-var fs = require('fs');
-var readlineSync = require('readline-sync');
+//modules
+const ProgressBar = require('progress');
+const request = require('request');
+const cheerio = require('cheerio');
+const fs = require('fs');
+const readline = require('readline');
+
+
 var searchItem,searchUrl;
-console.log("Enter The Video Name You Want To Search");
-searchItem = readlineSync.question('Type The Video Name : ');
-searchItem = searchItem.replace(/ /g, "+");
-// searchUrl = "https://www.youtube.com/results?sp=CAM%253D&q=" + searchItem;
-searchUrl = "https://www.youtube.com/results?search_query="+searchItem;
+var count = 0;
+function readLineByLine(){
+    const rl = readline.createInterface({
+    input: fs.createReadStream('song.txt')
+    });
+    var lines = [];
+    var queries = [];
+    var i = 1;
+    rl.on('line', (line) => {
+        lines.push(line);
+        // console.log(lines);
+    console.log('Seach Item ' + i + ' : ', line);
+    i++;
+    });
+    rl.on('close',function(){
+        // console.log(lines);
+        lines.forEach(function(element){
+            queries.push("https://www.youtube.com/results?search_query="+element.replace(/ /g, "+"));
+        });
+        download(queries[0],queries);
+    });
+}
 
-var videoUrls = [];
-
-function getMusic (songUrl,songName) {
+function getMusic (songUrl,songName,songList) {
     request({
             url : songUrl,
             gzip : true
@@ -26,7 +44,7 @@ function getMusic (songUrl,songName) {
                 });
                 var musicUrl = allLinks[allLinks.length - 5];
                 // console.log(musicUrl);
-                console.log(songName);
+                console.log('\n'+songName);
                 var req = request({
                     method: 'GET',
                     uri : musicUrl
@@ -36,7 +54,7 @@ function getMusic (songUrl,songName) {
                 req.on( 'response', function ( res ) {
                     var len = parseInt(res.headers['content-length'], 10);
                 
-                    console.log();
+                    // console.log();
                     var bar = new ProgressBar('  downloading [:bar] :percent :etas', {
                         complete: '=',
                         incomplete: ' ',
@@ -50,31 +68,46 @@ function getMusic (songUrl,songName) {
                     
                     res.on('end', function () {
                         console.log('\n');
+                        if(count<songList.length){
+                            count++;
+                            console.log(songList.length);
+                            console.log(count);
+                            if(count<songList.length) {
+                                download(songList[count],songList);  
+                            } 
+                        }
                     });
                 });
             }
         });
 }
 
-request({
-    url : searchUrl,
-    gzip : true
-}, (err, res, body) => {
-    if(err) throw err;
-    else {
-        var $ = cheerio.load(body);
-        $(".yt-lockup-title > a").each(function(){
-            var urlCurrent = {
-                url : $(this).attr('href'),
-                title : $(this).attr('title')
-            }
-            videoUrls.push(urlCurrent);
-        });
-        var mainUrl = "http://keepvid.com/?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3D" + videoUrls[0].url.replace("/watch?v=",'');
-        var songTitle = videoUrls[0].title;
-        // console.log(mainUrl );
-        getMusic(mainUrl,songTitle);
-                
+function download(searchUrl,songList){
 
-    }
-});
+    request({
+        url : searchUrl,
+        gzip : true
+    }, (err, res, body) => {
+        if(err) throw err;
+        else {
+            var videoUrls = [];
+            var $ = cheerio.load(body);
+            $(".yt-lockup-title > a").each(function(){
+                var urlCurrent = {
+                    url : $(this).attr('href'),
+                    title : $(this).attr('title')
+                }
+                videoUrls.push(urlCurrent);
+            });
+            var mainUrl = "http://keepvid.com/?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3D" 
+                            + videoUrls[0].url.replace("/watch?v=",'');
+            var songTitle = videoUrls[0].title;
+            // console.log(mainUrl );
+            getMusic(mainUrl,songTitle,songList);
+                    
+
+        }
+    });
+};
+
+readLineByLine();
