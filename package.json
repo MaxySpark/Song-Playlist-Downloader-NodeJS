@@ -18,6 +18,7 @@
   "homepage": "https://github.com/MaxySpark/song-playlist-downloader#readme",
   "dependencies": {
     "cheerio": "^0.22.0",
+    "progress": "^1.1.8",
     "readline-sync": "^1.4.5",
     "request": "^2.76.0"
   }
