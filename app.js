@@ -11,6 +11,24 @@ searchUrl = "https://www.youtube.com/results?search_query="+searchItem;
 
 var videoUrls = [];
 
+function getMusic (songUrl) {
+    request({
+            url : songUrl,
+            gzip : true
+        }, (err, res, body)=> {
+            if(err) throw err;
+            else {
+                var $ = cheerio.load(body);
+                var allLinks = [];
+                $("#dl > .d-info > ul > li > a").each(function(){
+                    allLinks.push($(this).attr('href'));
+                });
+                allLinks[allLinks.length - 5 - 1];
+                console.log(allLinks[allLinks.length - 5]);
+            }
+        });
+}
+
 request({
     url : searchUrl,
     gzip : true
@@ -25,7 +43,10 @@ request({
             }
             videoUrls.push(urlCurrent);
         });
-        var mainUrl = "http://ssyoutube.com" + videoUrls[0].url;
-        console.log(videoUrls );
+        var mainUrl = "http://keepvid.com/?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3D" + videoUrls[0].url.replace("/watch?v=",'');
+        // console.log(mainUrl );
+        getMusic(mainUrl);
+                
+
     }
 });
