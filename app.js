@@ -94,6 +94,8 @@ function download(searchUrl,songList){
         if(err) throw err;
         else {
             var videoUrls = [];
+            var n = 0;
+            var z = 0;
             var $ = cheerio.load(body);
             $(".yt-lockup-title > a").each(function(){
                 var urlCurrent = {
@@ -102,9 +104,17 @@ function download(searchUrl,songList){
                 }
                 videoUrls.push(urlCurrent);
             });
+            for(z=0;z<videoUrls.length;z++) {
+                if(videoUrls[n].url.search("user")==1) {
+                    console.log(n);
+                    n = n + 1;console.log(n);
+                } else {
+                    break;
+                }
+            }
             var mainUrl = "http://keepvid.com/?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3D" 
-                            + videoUrls[0].url.replace("/watch?v=",'');
-            var songTitle = videoUrls[0].title;
+                            + videoUrls[n].url.replace("/watch?v=",'');
+            var songTitle = videoUrls[n].title;
             // console.log(mainUrl );
             getMusic(mainUrl,songTitle,songList);
                     
