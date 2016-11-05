@@ -9,6 +9,9 @@ const readline = require('readline');
 var searchItem,searchUrl;
 var count = 0;
 function readLineByLine(){
+    if (!fs.existsSync('./downloads/')){
+            fs.mkdirSync('./downloads/');
+        }
     const rl = readline.createInterface({
     input: fs.createReadStream('song.txt')
     });
