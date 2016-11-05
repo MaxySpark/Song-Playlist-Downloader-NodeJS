@@ -67,11 +67,11 @@ function getMusic (songUrl,songName,songList) {
                     });
                     
                     res.on('end', function () {
-                        console.log('\n');
+                        // console.log('\n');
                         if(count<songList.length){
                             count++;
-                            console.log(songList.length);
-                            console.log(count);
+                            // console.log(songList.length);
+                            // console.log(count);
                             if(count<songList.length) {
                                 download(songList[count],songList);  
                             } 
