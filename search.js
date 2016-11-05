@@ -73,9 +73,10 @@ request({
             videoUrls.push(urlCurrent);
         });
         for(z=0;z<videoUrls.length;z++) {
-            if(videoUrls[n].url.search("user")==1) {
+            if(videoUrls[n].url.search("user")==1 || videoUrls[n].url.search("channel")==1) {
                 console.log(n);
-                n = n + 1;console.log(n);
+                n = n + 1;
+                console.log(n);
             } else {
                 break;
             }
