@@ -7,7 +7,7 @@ Download The Repository or Clone it Then- -
 
 Download The Repo As ZIP [**_CLICK HERE_**](http://mxys.tk/github_file_songlist)
 
-#####Write The Songs Name You Want To Download In The `song.txt` file line by line(Every Song Name Must Be Separate Lines)
+#####Write The Songs Name You Want To Download In The `song.txt` file line by line(Every Song Name Must Be In Separate Lines)
 
 ![Scrrenshot 1](https://raw.githubusercontent.com/MaxySpark/Song-Playlist-Downloader-NodeJS/master/screenshots/spd1.jpg "Scrrenshot 1")
 
