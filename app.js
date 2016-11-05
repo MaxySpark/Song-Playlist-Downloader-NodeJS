@@ -52,7 +52,7 @@ function getMusic (songUrl,songName,songList) {
                     method: 'GET',
                     uri : musicUrl
                 });
-                req.pipe(fs.createWriteStream('downloads/'+ songName +'.mp3'));
+                req.pipe(fs.createWriteStream('downloads/'+ songName.replace(/\//g,'') +'.mp3'));
                 // req.pipe(out);
                 req.on( 'response', function ( res ) {
                     var len = parseInt(res.headers['content-length'], 10);
