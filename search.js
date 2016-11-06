@@ -1,3 +1,4 @@
+console.log("\nTHIS SCRIPT IS CREATED BY MAXYSPARK\n");
 var ProgressBar = require('progress');
 var request = require('request');
 var cheerio = require('cheerio');

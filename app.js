@@ -1,3 +1,4 @@
+console.log("\nTHIS SCRIPT IS CREATED BY MAXYSPARK\n");
 //modules
 const ProgressBar = require('progress');
 const request = require('request');
