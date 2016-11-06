@@ -1,5 +1,6 @@
 echo "SONG & PLAYLIST DOWNLOADER by MaxySpark"
-if [ ! -d "node_modules" ]; then
+if [ ! -d "node_modules" ]; 
+  then
   echo "INSTALLING NODE MODULES PLEASE WAIT..."
   npm install
 fi
