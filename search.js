@@ -5,7 +5,7 @@ var cheerio = require('cheerio');
 var fs = require('fs');
 var readlineSync = require('readline-sync');
 var searchItem,searchUrl;
-console.log("Enter The Video Name You Want To Search");
+console.log("Enter The Video Name You Want To Search\n");
 searchItem = readlineSync.question('Type The Video Name : ');
 searchItem = searchItem.replace(/ /g, "+");
 // searchUrl = "https://www.youtube.com/results?sp=CAM%253D&q=" + searchItem;
@@ -27,7 +27,7 @@ function getMusic (songUrl,songName) {
                 });
                 var musicUrl = allLinks[allLinks.length - 5];
                 // console.log(musicUrl);
-                console.log(songName);
+                console.log("\nNow Downloading : \n"+songName);
                 var req = request({
                     method: 'GET',
                     uri : musicUrl
@@ -36,7 +36,8 @@ function getMusic (songUrl,songName) {
                 // req.pipe(out);
                 req.on( 'response', function ( res ) {
                     var len = parseInt(res.headers['content-length'], 10);
-                
+                    var size = (len/1024)/1024;
+                    console.log("File Size : "+parseFloat(size).toFixed(2)+" MB");
                     console.log();
                     var bar = new ProgressBar('  downloading [:bar] :percent :etas', {
                         complete: '=',
@@ -50,7 +51,7 @@ function getMusic (songUrl,songName) {
                     });
                     
                     res.on('end', function () {
-                        console.log('\n');
+                        console.log("\nDownload Completed");
                     });
                 });
             }

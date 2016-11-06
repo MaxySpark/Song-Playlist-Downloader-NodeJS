@@ -48,7 +48,7 @@ function getMusic (songUrl,songName,songList) {
                 });
                 var musicUrl = allLinks[allLinks.length - 5];
                 // console.log(musicUrl);
-                console.log('\n'+songName);
+               console.log("\nNow Downloading : "+songName);
                 var req = request({
                     method: 'GET',
                     uri : musicUrl
@@ -57,8 +57,9 @@ function getMusic (songUrl,songName,songList) {
                 // req.pipe(out);
                 req.on( 'response', function ( res ) {
                     var len = parseInt(res.headers['content-length'], 10);
-                
-                    // console.log();
+                    var size = (len/1024)/1024;
+                    console.log("File Size : "+parseFloat(size).toFixed(2)+" MB");
+                    console.log();
                     var bar = new ProgressBar('  downloading [:bar] :percent :etas', {
                         complete: '=',
                         incomplete: ' ',
@@ -78,7 +79,9 @@ function getMusic (songUrl,songName,songList) {
                             // console.log(count);
                             if(count<songList.length) {
                                 download(songList[count],songList);  
-                            } 
+                            } else {
+                                console.log("\nDownload completed");
+                            }
                         }
                     });
                 });
