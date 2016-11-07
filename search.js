@@ -64,6 +64,9 @@ request({
 }, (err, res, body) => {
     if(err) throw err;
     else {
+        if (!fs.existsSync('./downloads/')){
+            fs.mkdirSync('./downloads/');
+        }
         var n = 0;
         var z = 0;
         var $ = cheerio.load(body);
