@@ -5,7 +5,8 @@ IF EXIST %CD%\node_modules\NUL GOTO :1
 ECHO "INSTALLING NODE MODULES PLEASE WAIT..."
 call npm install
 
-:1
+:1  
+    call npm install
     ECHO [A] DOWNLOAD FROM song.txt
     ECHO [B] DOWNLOAD SINGLE SONG BY SEARCH
     SET /P option=ENTER YOUR CHOICE : 

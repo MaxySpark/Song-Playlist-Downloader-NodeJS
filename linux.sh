@@ -7,6 +7,7 @@ fi
 label=1
 while [ $label -eq 1 ]
   do
+    npm install
     echo "[A] DOWNLOAD FROM song.txt"
     echo "[B] DOWNLOAD SINGLE SONG BY SEARCH"
     echo ENTER YOUR CHOICE : 

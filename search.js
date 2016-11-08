@@ -64,7 +64,7 @@ function getMusic (songUrl,songName) {
                                 console.log("ALERT!!! ALERT!!!\n".red.bold)
                                 console.log(songName.cyan.bold + " IS NOT DOWNLOADED!!!".red.bold);
                             } else {
-                                console.log("\nDownload completed".green.bold);
+                                console.log("\nDownload completed\n".green.bold);
                             }
                     });
                 });

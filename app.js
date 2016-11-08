@@ -93,7 +93,7 @@ function getMusic (songUrl,songName,songList) {
                             if(count<songList.length) {
                                 download(songList[count],songList);  
                             } else {
-                                console.log("\nDownload completed".green.bold);
+                                console.log("\nDownload completed\n".green.bold);
                             }
                         }
                     });
