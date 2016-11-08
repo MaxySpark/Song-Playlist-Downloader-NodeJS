@@ -55,7 +55,11 @@ function getMusic (songUrl,songName) {
                     });
                     
                     res.on('end', function () {
-                        console.log("\nDownload Completed");
+                        if(size==0){
+                                console.log(songName + "IS NOT DOWNLOADED!!!");
+                            } else {
+                                console.log("\nDownload Completed");
+                            }
                     });
                 });
             }

@@ -81,6 +81,9 @@ function getMusic (songUrl,songName,songList) {
                             count++;
                             // console.log(songList.length);
                             // console.log(count);
+                            if(size==0){
+                                console.log(songName + "IS NOT DOWNLOADED!!!");
+                            }
                             if(count<songList.length) {
                                 download(songList[count],songList);  
                             } else {
