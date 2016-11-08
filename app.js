@@ -46,7 +46,11 @@ function getMusic (songUrl,songName,songList) {
                 $("#dl > .d-info > ul > li > a").each(function(){
                     allLinks.push($(this).attr('href'));
                 });
-                var musicUrl = allLinks[allLinks.length - 5];
+                if(allLinks[allLinks.length - 2].search("keepvid.com") != 7 ) {
+                   var musicUrl = allLinks[allLinks.length - 5];
+                } else {
+                    var musicUrl = allLinks[allLinks.length - 6];
+                }
                 // console.log(musicUrl);
                console.log("\nNow Downloading : "+songName);
                 var req = request({
