@@ -17,6 +17,8 @@ Download The Repo As ZIP [**_CLICK HERE_**](http://mxys.tk/github_file_songlist)
 
 ####_FOR LINUX USERS OPEN TERMINAL IN THE REPO FOLDER and RUN THE COMMAND `./linux.sh` FILE (But You Have To Fllow The Above Step)_
 
+####_FOR MAC USERS OPEN TERMINAL IN THE REPO FOLDER and RUN THE COMMAND `./mac.sh` FILE (But You Have To Fllow The Above Step)_
+
 ![Scrrenshot 4](https://raw.githubusercontent.com/MaxySpark/Song-Playlist-Downloader-NodeJS/master/screenshots/spd4.jpg "Scrrenshot 4")
 
 ###first open a terminal in the folder and enter the commands
