@@ -61,7 +61,8 @@ function getMusic (songUrl,songName) {
                     
                     res.on('end', function () {
                         if(size==0){
-                                console.log(songName.cyan.bold + "IS NOT DOWNLOADED!!!".red.bold);
+                                console.log("ALERT!!! ALERT!!!\n".red.bold)
+                                console.log(songName.cyan.bold + " IS NOT DOWNLOADED!!!".red.bold);
                             } else {
                                 console.log("\nDownload completed".green.bold);
                             }
