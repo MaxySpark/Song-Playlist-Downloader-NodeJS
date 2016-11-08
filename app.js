@@ -1,4 +1,9 @@
-console.log("\nTHIS SCRIPT IS CREATED BY MAXYSPARK\n");
+const colors = require('colors');
+console.log("\n ******************************************".rainbow.bold);
+console.log(" **                                      **".rainbow.bold);
+console.log("****".rainbow.bold + ("THIS SCRIPT IS CREATED BY: ").red.bold + "MAXYSPARK****".rainbow.bold);
+console.log(" **                                      **".rainbow.bold);
+console.log(" ******************************************".rainbow.bold);
 //modules
 const ProgressBar = require('progress');
 const request = require('request');
@@ -52,7 +57,7 @@ function getMusic (songUrl,songName,songList) {
                     var musicUrl = allLinks[allLinks.length - 6];
                 }
                 // console.log(musicUrl);
-               console.log("\nNow Downloading : "+songName);
+               console.log("\nNow Downloading : ".blue.bold+songName.yellow.bold);
                 var req = request({
                     method: 'GET',
                     uri : musicUrl
@@ -82,12 +87,12 @@ function getMusic (songUrl,songName,songList) {
                             // console.log(songList.length);
                             // console.log(count);
                             if(size==0){
-                                console.log(songName + "IS NOT DOWNLOADED!!!");
+                                console.log(songName.cyan.bold + "IS NOT DOWNLOADED!!!".red.bold);
                             }
                             if(count<songList.length) {
                                 download(songList[count],songList);  
                             } else {
-                                console.log("\nDownload completed");
+                                console.log("\nDownload completed".green.bold);
                             }
                         }
                     });
