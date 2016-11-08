@@ -79,9 +79,9 @@ request({
         });
         for(z=0;z<videoUrls.length;z++) {
             if(videoUrls[n].url.search("user")==1 || videoUrls[n].url.search("channel")==1 || videoUrls[n].url.search("googleads.g")==8) {
-                console.log(n);
+                // console.log(n);
                 n = n + 1;
-                console.log(n);
+                // console.log(n);
             } else {
                 break;
             }
