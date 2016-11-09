@@ -27,7 +27,7 @@ function readLineByLine(){
     rl.on('line', (line) => {
         lines.push(line);
         // console.log(lines);
-    console.log('Seach Item ' + i + ' : ', line);
+    console.log('Search Item ' + i + ' : ', line);
     i++;
     });
     rl.on('close',function(){
@@ -57,12 +57,12 @@ function getMusic (songUrl,songName,songList) {
                     var musicUrl = allLinks[allLinks.length - 6];
                 }
                 // console.log(musicUrl);
-               console.log("\nNow Downloading : ".blue.bold+songName.yellow.bold);
+               console.log("\nNow Downloading : ".blue.bold+songName.replace(/\"/g,'').replace(/\( Official Video \)/g, '').replace(/\(Official Video\)/g, '').replace(/Official Video/g,'').yellow.bold);
                 var req = request({
                     method: 'GET',
                     uri : musicUrl
                 });
-                req.pipe(fs.createWriteStream('downloads/'+ songName.replace(/\//g,'') +'.mp3'));
+                req.pipe(fs.createWriteStream('downloads/'+ songName.replace(/\|/g,'').replace(/\//g,'').replace(/\"/g,'').replace(/\'/g,'').replace(/\( Official Video \)/g, '').replace(/\(Official Video\)/g, '').replace(/Official Video/g,'') +'.mp3'));
                 // req.pipe(out);
                 req.on( 'response', function ( res ) {
                     var len = parseInt(res.headers['content-length'], 10);

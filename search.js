@@ -10,8 +10,8 @@ var cheerio = require('cheerio');
 var fs = require('fs');
 var readlineSync = require('readline-sync');
 var searchItem,searchUrl;
-console.log("Enter The Video Name You Want To Search\n");
-searchItem = readlineSync.question('Type The Video Name : ');
+console.log("Enter The Song Name You Want To Search\n");
+searchItem = readlineSync.question('Type The Song Name : ');
 searchItem = searchItem.replace(/ /g, "+");
 // searchUrl = "https://www.youtube.com/results?sp=CAM%253D&q=" + searchItem;
 searchUrl = "https://www.youtube.com/results?search_query="+searchItem;
@@ -36,12 +36,12 @@ function getMusic (songUrl,songName) {
                     var musicUrl = allLinks[allLinks.length - 6];
                 }
                 // console.log(musicUrl);
-                console.log("\nNow Downloading : ".blue.bold+songName.yellow.bold);
+                console.log("\nNow Downloading : ".blue.bold+songName.replace(/\"/g,'').replace(/\( Official Video \)/g, '').replace(/\(Official Video\)/g, '').replace(/Official Video/g,'').yellow.bold);
                 var req = request({
                     method: 'GET',
                     uri : musicUrl
                 });
-                req.pipe(fs.createWriteStream('downloads/'+ songName.replace(/\//g,'') +'.mp3'));
+                req.pipe(fs.createWriteStream('downloads/'+ songName.replace(/\|/g,'').replace(/\//g,'').replace(/\"/g,'').replace(/\'/g,'').replace(/\( Official Video \)/g, '').replace(/\(Official Video\)/g, '').replace(/Official Video/g,'') +'.mp3'));
                 // req.pipe(out);
                 req.on( 'response', function ( res ) {
                     var len = parseInt(res.headers['content-length'], 10);
