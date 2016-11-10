@@ -4,7 +4,6 @@ ECHO "SONG & PLAYLIST DOWNLOADER by MaxySpark"
 IF EXIST %CD%\node_modules\NUL GOTO :1
 ECHO "INSTALLING NODE MODULES PLEASE WAIT..."
 call npm install
-
 :1  
     call npm install
     ECHO [A] DOWNLOAD FROM song.txt
