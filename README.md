@@ -34,3 +34,6 @@ Download The Repo As ZIP [**_CLICK HERE_**](http://mxys.tk/github_file_songlist)
 ####`$ node search`
 
 ![Scrrenshot 3](https://raw.githubusercontent.com/MaxySpark/Song-Playlist-Downloader-NodeJS/master/screenshots/spd3.jpg "Scrrenshot 3")
+
+
+#####Songs Will Be Downloaded in `m4a` Format, So If You Want `mp3` Format Use A Converter to Convert The Songs To `mp3`
