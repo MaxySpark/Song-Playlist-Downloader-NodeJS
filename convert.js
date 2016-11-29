@@ -11,7 +11,7 @@ fs.readdir('./downloads/',function(err, files){
         }
    files.forEach(function(mfile){
         ffmpeg(__dirname+'/downloads/'+mfile)
-        .save(__dirname+'/convertedfiles/'+mfile.replace(/\.m4a/g,'')+'.mp3')
+        .save(__dirname+'/convertedfiles/'+mfile.replace(/\.m4a/g,'').replace(/\.mp3/g,'')+'.mp3')
         .on('end', function() {
         console.log('Finished Converting '+ mfile.yellow.bold);
         fs.unlink(__dirname+'/downloads/'+mfile, (err) => {
