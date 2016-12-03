@@ -27,7 +27,7 @@ function getMusic (songUrl,songName) {
             else {
                 var $ = cheerio.load(body);
                 var allLinks = [];
-                $("#dl > .d-info > ul > li > a").each(function(){
+                $("#dl > .d-info2 > dl >dd >a").each(function(){
                     allLinks.push($(this).attr('href'));
                 });
                 if(allLinks[allLinks.length - 2].search("keepvid.com") != 7 ) {
