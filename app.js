@@ -52,9 +52,9 @@ function getMusic (songUrl,songName,songList) {
                     allLinks.push($(this).attr('href'));
                 });
                 if(allLinks[allLinks.length - 2].search("keepvid.com") != 7 ) {
-                   var musicUrl = allLinks[allLinks.length - 5];
+                   var musicUrl = allLinks[allLinks.length - 3];
                 } else {
-                    var musicUrl = allLinks[allLinks.length - 6];
+                    var musicUrl = allLinks[allLinks.length - 2];
                 }
                 // console.log(musicUrl);
                console.log("\nNow Downloading : ".blue.bold+songName.replace(/\<|\>|\:|\"|\/|\\|\||\?|\*|\[|\]|\(|\)|\'/g,'').replace(/lyrics/g,'').replace(/Official Video/g,'').yellow.bold);
