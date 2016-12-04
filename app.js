@@ -51,10 +51,15 @@ function getMusic (songUrl,songName,songList) {
                 $("#dl > .d-info2 > dl >dd >a").each(function(){
                     allLinks.push($(this).attr('href'));
                 });
-                if(allLinks[allLinks.length - 2].search("keepvid.com") != 7 ) {
-                   var musicUrl = allLinks[allLinks.length - 3];
+                if(allLinks[allLinks.length - 1].search("keepvid.com") == 7 ) {
+                    if(allLinks[allLinks.length - 2].search("keepvid.com") == 7 ) {
+                        var musicUrl = allLinks[allLinks.length - 3];
+                    } else {
+                        var musicUrl = allLinks[allLinks.length - 2];
+                    }
+                   
                 } else {
-                    var musicUrl = allLinks[allLinks.length - 2];
+                    var musicUrl = allLinks[allLinks.length - 1];
                 }
                 // console.log(musicUrl);
                console.log("\nNow Downloading : ".blue.bold+songName.replace(/\<|\>|\:|\"|\/|\\|\||\?|\*|\[|\]|\(|\)|\'/g,'').replace(/lyrics/g,'').replace(/Official Video/g,'').yellow.bold);
