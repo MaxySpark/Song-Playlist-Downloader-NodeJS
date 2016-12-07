@@ -33,7 +33,7 @@ function readLineByLine(){
     rl.on('close',function(){
         // console.log(lines);
         lines.forEach(function(element){
-            queries.push("https://www.youtube.com/results?search_query="+element.replace(/ /g, "+"));
+            queries.push("https://www.youtube.com/results?search_query="+encodeURIComponent(element));
         });
         download(queries[0],queries);
     });

@@ -12,7 +12,7 @@ var readlineSync = require('readline-sync');
 var searchItem,searchUrl;
 console.log("Enter The Song Name You Want To Search\n");
 searchItem = readlineSync.question('Type The Song Name : ');
-searchItem = searchItem.replace(/ /g, "+");
+searchItem = encodeURIComponent(searchItem);
 // searchUrl = "https://www.youtube.com/results?sp=CAM%253D&q=" + searchItem;
 searchUrl = "https://www.youtube.com/results?search_query="+searchItem;
 
