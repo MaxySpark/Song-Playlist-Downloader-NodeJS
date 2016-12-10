@@ -51,58 +51,72 @@ function getMusic (songUrl,songName,songList) {
                 $("#dl > .d-info2 > dl >dd >a").each(function(){
                     allLinks.push($(this).attr('href'));
                 });
-                if(allLinks[allLinks.length - 1].search("keepvid.com") == 7 ) {
-                    if(allLinks[allLinks.length - 2].search("keepvid.com") == 7 ) {
-                        var musicUrl = allLinks[allLinks.length - 3];
-                    } else {
-                        var musicUrl = allLinks[allLinks.length - 2];
-                    }
-                   
-                } else {
-                    var musicUrl = allLinks[allLinks.length - 1];
-                }
-                // console.log(musicUrl);
-               console.log("\nNow Downloading : ".blue.bold+songName.replace(/\<|\>|\:|\"|\/|\\|\||\?|\*|\[|\]|\(|\)|\'/g,'').replace(/lyrics/g,'').replace(/Official Video/g,'').yellow.bold);
-                var req = request({
-                    method: 'GET',
-                    uri : musicUrl
-                });
-                req.pipe(fs.createWriteStream('downloads/'+ songName.replace(/\<|\>|\:|\"|\/|\\|\||\?|\*|\[|\]|\(|\)|\'/g,'').replace(/lyrics/g,'').replace(/Official Video/g,'') +'.m4a'));
-                // req.pipe(out);
-                req.on( 'response', function ( res ) {
-                    var len = parseInt(res.headers['content-length'], 10);
-                    var size = (len/1024)/1024;
-                    console.log("File Size : "+parseFloat(size).toFixed(2)+" MB");
-                    console.log();
-                    var bar = new ProgressBar('  downloading [:bar] :percent :etas', {
-                        complete: '=',
-                        incomplete: ' ',
-                        width: 20,
-                        total: len
-                    });
-                    
-                    res.on('data', function (chunk) {
-                        bar.tick(chunk.length);
-                    });
-                    
-                    res.on('end', function () {
-                        // console.log('\n');
-                        if(count<songList.length){
-                            count++;
-                            // console.log(songList.length);
-                            // console.log(count);
-                            if(size==0){
-                                console.log("ALERT!!! ALERT!!!\n".red.bold)
-                                console.log(songName.cyan.bold + " IS NOT DOWNLOADED!!!".red.bold);
-                            }
-                            if(count<songList.length) {
-                                download(songList[count],songList);  
-                            } else {
-                                console.log("\nDownload completed\n".green.bold);
-                            }
+                if(allLinks.length < 2) {
+
+                    console.log('\n'+songName.red.bold +" : Song Is Copyrighted\n".blue.bold+"Tip - Add the Word \"LYRICS\" After The Song Name in \"song.txt\"".yellow.bold);
+                    if(count<songList.length) {
+                        count++;
+                        if(count<songList.length) {
+                            download(songList[count],songList);
                         }
+                    }
+
+
+                } else {
+                    if (allLinks[allLinks.length - 1].search("keepvid.com") == 7) {
+                        if (allLinks[allLinks.length - 2].search("keepvid.com") == 7) {
+                            var musicUrl = allLinks[allLinks.length - 3];
+                        } else {
+                            var musicUrl = allLinks[allLinks.length - 2];
+                        }
+
+                    } else {
+                        var musicUrl = allLinks[allLinks.length - 1];
+                    }
+                    // console.log(musicUrl);
+                    console.log("\nNow Downloading : ".blue.bold+songName.replace(/\<|\>|\:|\"|\/|\\|\||\?|\*|\[|\]|\(|\)|\'/g,'').replace(/lyrics/g,'').replace(/Official Video/g,'').yellow.bold);
+                    var req = request({
+                        method: 'GET',
+                        uri : musicUrl
                     });
-                });
+                    req.pipe(fs.createWriteStream('downloads/'+ songName.replace(/\<|\>|\:|\"|\/|\\|\||\?|\*|\[|\]|\(|\)|\'/g,'').replace(/lyrics/g,'').replace(/Official Video/g,'') +'.m4a'));
+                    // req.pipe(out);
+                    req.on( 'response', function ( res ) {
+                        var len = parseInt(res.headers['content-length'], 10);
+                        var size = (len/1024)/1024;
+                        console.log("File Size : "+parseFloat(size).toFixed(2)+" MB");
+                        console.log();
+                        var bar = new ProgressBar('  downloading [:bar] :percent :etas', {
+                            complete: '=',
+                            incomplete: ' ',
+                            width: 20,
+                            total: len
+                        });
+
+                        res.on('data', function (chunk) {
+                            bar.tick(chunk.length);
+                        });
+
+                        res.on('end', function () {
+                            // console.log('\n');
+                            if(count<songList.length){
+                                count++;
+                                // console.log(songList.length);
+                                // console.log(count);
+                                if(size==0){
+                                    console.log("ALERT!!! ALERT!!!\n".red.bold)
+                                    console.log(songName.cyan.bold + " IS NOT DOWNLOADED!!!".red.bold);
+                                }
+                                if(count<songList.length) {
+                                    download(songList[count],songList);
+                                } else {
+                                    console.log("\nDownload completed\n".green.bold);
+                                }
+                            }
+                        });
+                    });
+                }
+
             }
         });
 }
@@ -137,7 +151,10 @@ function download(searchUrl,songList){
             }
             var mainUrl = "http://keepvid.com/?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3D" 
                             + videoUrls[n].url.replace("/watch?v=",'');
+            var mainUrl2 = "http://keepvid.com/?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3D"
+                + videoUrls[n+1].url.replace("/watch?v=",'');
             var songTitle = videoUrls[n].title;
+            var songTitle2 = videoUrls[n+1].title;
             // console.log(mainUrl );
             getMusic(mainUrl,songTitle,songList);
                     
