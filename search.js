@@ -27,7 +27,7 @@ function getMusic (songUrl,songName) {
             else {
                 var $ = cheerio.load(body);
                 var allLinks = [];
-                $("#dl > .d-info2 > dl >dd >a").each(function(){
+                $(".item-9 > table > tbody > tr > td:nth-child(4) > a").each(function(){
                     allLinks.push($(this).attr('href'));
                 });
                 if(allLinks.length < 2) {
